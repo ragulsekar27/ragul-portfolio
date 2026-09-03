@@ -4,370 +4,567 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ragul S | Python & App Developer</title>
-    <!-- Modern Google Font: Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Modern Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
-        /* Animated Vibrant Gradient Background */
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: rgba(21, 29, 44, 0.7);
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-pink: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
         body {
-            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #311042, #0284c7);
-            background-size: 400% 400%;
-            animation: gradientBG 12s ease infinite;
-            color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.12) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
-        /* Main Glassmorphism Card Container */
-        .portfolio-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
+        /* Sticky Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 850px;
-            padding: 45px 35px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            animation: floatUp 1s ease-out;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        /* Profile Header */
-        .header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .header h1 {
-            font-size: 3rem;
+        .logo {
+            font-size: 1.5rem;
             font-weight: 800;
-            background: linear-gradient(90deg, #38bdf8, #a855f7, #f43f5e);
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-            animation: glowText 3s ease-in-out infinite alternate;
         }
 
-        .header p {
-            color: #cbd5e1;
-            font-size: 1.25rem;
-            font-weight: 400;
-        }
-
-        .skills-badges {
+        .nav-links {
             display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 18px;
-            flex-wrap: wrap;
+            gap: 25px;
+            list-style: none;
         }
 
-        .badge {
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-            padding: 8px 18px;
-            border-radius: 30px;
-            font-size: 0.9rem;
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
             font-weight: 600;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
 
-        .badge:hover {
-            transform: translateY(-5px) scale(1.05);
-            background: #38bdf8;
-            color: #0f172a;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        .nav-links a:hover {
+            color: var(--accent-blue);
         }
 
-        /* Navigation Tabs */
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
-        .tab-btn {
-            background: rgba(30, 41, 59, 0.7);
-            color: #94a3b8;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 26px;
-            border-radius: 14px;
-            font-size: 1rem;
+        .btn {
+            padding: 12px 28px;
+            border-radius: 12px;
             font-weight: 600;
-            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
 
-        .tab-btn:hover {
-            background: rgba(51, 65, 85, 0.9);
-            color: #f8fafc;
-            transform: translateY(-2px);
-        }
-
-        .tab-btn.active {
+        .btn-primary {
             background: linear-gradient(135deg, #0284c7, #2563eb);
-            color: #ffffff;
-            border-color: #38bdf8;
-            box-shadow: 0 0 18px rgba(2, 132, 199, 0.5);
+            color: white;
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.4);
         }
 
-        /* Tab Content Setup */
-        .tab-content {
-            display: none;
-            animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(2, 132, 199, 0.6);
         }
 
-        .tab-content.active {
-            display: block;
+        .btn-outline {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
         }
 
-        /* Project Cards (Grid Layout) */
+        .btn-outline:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .project-card {
-            background: rgba(30, 41, 59, 0.6);
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #38bdf8, #a855f7);
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
         }
 
-        .project-card:hover {
-            transform: translateY(-8px);
-            background: rgba(30, 41, 59, 0.9);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
-        .project-card h3 {
-            color: #38bdf8;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .project-card p {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            line-height: 1.5;
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            border-radius: 8px;
         }
 
-        /* Qualification & Experience Cards */
-        .info-box {
-            background: rgba(30, 41, 59, 0.6);
-            padding: 22px 25px;
-            border-radius: 16px;
-            border-left: 5px solid #a855f7;
-            margin-bottom: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .info-box:hover {
-            transform: translateX(6px);
-        }
-
-        .info-box h3 {
-            color: #f8fafc;
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-        }
-
-        .info-box p {
-            color: #94a3b8;
-            font-size: 1rem;
-            margin-top: 4px;
-        }
-
-        /* Contact Details Styling */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        /* Qualification Timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
-        .contact-box {
-            background: rgba(30, 41, 59, 0.6);
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            text-align: center;
-            transition: all 0.3s ease;
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+            border-left: 2px solid var(--accent-purple);
         }
 
-        .contact-box:hover {
-            transform: translateY(-5px);
-            border-color: #38bdf8;
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            color: var(--text-main);
         }
 
-        .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-
-        .contact-box h4 {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-
-        .contact-box a {
-            color: #38bdf8;
-            text-decoration: none;
-            font-size: 1.1rem;
+        .timeline-item .sub {
+            color: var(--accent-blue);
             font-weight: 600;
-            word-break: break-all;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
         }
 
-        .contact-box a:hover {
-            text-decoration: underline;
-            color: #a855f7;
+        /* Contact Form Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        /* Animations */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .contact-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        @keyframes floatUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.92); }
-            to { opacity: 1; transform: scale(1); }
+        .info-card i {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
         }
 
-        @keyframes glowText {
-            from { text-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
-            to { text-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="portfolio-card">
-        
-        <!-- Header -->
-        <div class="header">
-            <h1>Ragul S</h1>
-            <p>Python Developer & App Developer</p>
-            <div class="skills-badges">
-                <span class="badge">Python</span>
-                <span class="badge">HTML</span>
-                <span class="badge">App Development</span>
+    <!-- Sticky Navigation -->
+    <nav>
+        <div class="logo">Ragul S.</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#qualification">Qualifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- Hero / About Section -->
+        <section id="about" class="hero">
+            <div class="hero-content">
+                <div class="badge-status">
+                    <span class="dot"></span> Available for Hiring & Projects
+                </div>
+                <h1>Hi, I'm <span>Ragul S</span><br>Python & App Developer</h1>
+                <p>A passionate 3rd-year BCA student specializing in Python application development, interactive games, and modern UI solutions. Focused on clean code and logic-driven software.</p>
+                
+                <div class="btn-group">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i> Get In Touch
+                    </a>
+                    <!-- Resume Download Link (Replace 'resume.pdf' with your actual PDF link) -->
+                    <a href="#" download class="btn btn-outline">
+                        <i class="fa-solid fa-download"></i> Download CV
+                    </a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Navigation Tabs -->
-        <div class="nav-tabs">
-            <button class="tab-btn active" onclick="showTab(event, 'about')">About</button>
-            <button class="tab-btn" onclick="showTab(event, 'projects')">Projects</button>
-            <button class="tab-btn" onclick="showTab(event, 'qualification')">Qualification</button>
-            <button class="tab-btn" onclick="showTab(event, 'contact')">Contact</button>
-        </div>
-
-        <!-- Tab 1: About -->
-        <div id="about" class="tab-content active">
-            <div class="info-box" style="border-left-color: #38bdf8;">
-                <h3>Hello! 👋</h3>
-                <p>I am Ragul, currently pursuing my 3rd year in Bachelor of Computer Applications (BCA). Passionate about developing Python applications, desktop games, and modern UI projects with a strong focus on logic and performance.</p>
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="glass-card skill-item">
+                    <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+                    <div>
+                        <h3>Python</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Core & Application Logic</p>
+                    </div>
+                </div>
+                <div class="glass-card skill-item">
+                    <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+                    <div>
+                        <h3>HTML / CSS</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Modern Web Layouts</p>
+                    </div>
+                </div>
+                <div class="glass-card skill-item">
+                    <div class="skill-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <div>
+                        <h3>App Development</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Desktop & GUI Apps</p>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Tab 2: Projects -->
-        <div id="projects" class="tab-content">
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
-                    <h3>🐍 Snake Game</h3>
-                    <p>A classic arcade game created with Python featuring smooth movement, collision detection, and score tracking systems.</p>
+                
+                <!-- Project 1 -->
+                <div class="glass-card project-card">
+                    <div>
+                        <h3>🐍 Snake Game</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 10px;">
+                            Classic arcade game built using Python GUI libraries. Features dynamic score calculation, smooth frame rates, and collision logic.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">GUI</span>
+                            <span class="tag">Game Dev</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ragulsekar27" target="_blank" class="btn btn-outline btn-sm">
+                            <i class="fa-brands fa-github"></i> Source Code
+                        </a>
+                    </div>
                 </div>
-                <div class="project-card">
-                    <h3>👾 Alien Shooter</h3>
-                    <p>An action 2D space game built using Python programming logic, keyboard event handling, and dynamic graphics.</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- Tab 3: Qualification & Experience -->
-        <div id="qualification" class="tab-content">
-            <div class="info-box" style="border-left-color: #38bdf8;">
-                <h3>🎓 Education</h3>
-                <p><strong>Degree:</strong> Bachelor of Computer Applications (BCA)</p>
-                <p><strong>Status:</strong> 3rd Year Student</p>
-            </div>
-            <div class="info-box" style="border-left-color: #f43f5e;">
-                <h3>💼 Experience</h3>
-                <p><strong>Level:</strong> Fresher</p>
-                <p>Actively building hands-on projects in Python development and software applications.</p>
-            </div>
-        </div>
+                <!-- Project 2 -->
+                <div class="glass-card project-card">
+                    <div>
+                        <h3>👾 Alien Shooter</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 10px;">
+                            Action-packed 2D arcade shooter built with Python logic, event handling, real-time input controls, and custom enemy mechanics.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Event Logic</span>
+                            <span class="tag">2D Graphics</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/ragulsekar27" target="_blank" class="btn btn-outline btn-sm">
+                            <i class="fa-brands fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
 
-        <!-- Tab 4: Contact Info -->
-        <div id="contact" class="tab-content">
-            <div class="contact-container">
-                <div class="contact-box">
-                    <span class="contact-icon">📞</span>
-                    <h4>Phone Number</h4>
-                    <a href="tel:7418912694">+91 7418912694</a>
-                </div>
-                <div class="contact-box">
-                    <span class="contact-icon">📧</span>
-                    <h4>Email Address</h4>
-                    <a href="mailto:ragulsekar2712@gmail.com">ragulsekar2712@gmail.com</a>
-                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Qualification & Experience Section -->
+        <section id="qualification">
+            <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Qualification & Experience</h2>
+            <div class="timeline">
+                
+                <div class="glass-card timeline-item">
+                    <h3>Bachelor of Computer Applications (BCA)</h3>
+                    <div class="sub">Currently in 3rd Year</div>
+                    <p style="color: var(--text-muted);">Studying core software engineering concepts, database management, and programming logic.</p>
+                </div>
+
+                <div class="glass-card timeline-item" style="border-left-color: var(--accent-blue);">
+                    <h3>Software & App Developer (Fresher)</h3>
+                    <div class="sub">Hands-on Experience</div>
+                    <p style="color: var(--text-muted);">Actively developing practical desktop tools, games, and UI-focused applications in Python and HTML.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Get In Touch</h2>
+            <div class="contact-wrapper">
+                
+                <div class="glass-card contact-info-list">
+                    <h3>Contact Information</h3>
+                    <p style="color: var(--text-muted);">Feel free to reach out for projects, collaborations, or job opportunities!</p>
+                    
+                    <div class="info-card">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">PHONE</div>
+                            <a href="tel:7418912694" style="color: white; text-decoration: none; font-weight: 600;">+91 7418912694</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">EMAIL</div>
+                            <a href="mailto:ragulsekar2712@gmail.com" style="color: white; text-decoration: none; font-weight: 600;">ragulsekar2712@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-brands fa-github"></i>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">GITHUB</div>
+                            <a href="https://github.com/ragulsekar27" target="_blank" style="color: white; text-decoration: none; font-weight: 600;">github.com/ragulsekar27</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Direct Working Email Form -->
+                <div class="glass-card">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <!-- Free Web3Forms Key Access -->
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="4" placeholder="Your Message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
 
     </div>
 
-    <!-- Tab Switching Script -->
-    <script>
-        function showTab(evt, tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Ragul S. Built with Python & Modern Web Technologies.</p>
+    </footer>
 
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(button => button.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-    </script>
 </body>
 </html>
